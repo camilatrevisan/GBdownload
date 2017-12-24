@@ -1,0 +1,60 @@
+GBdownload                package:unknown                R Documentation
+
+Baixar sequências do GenBank com local da amostra
+
+Description:
+
+Permite baixar e compilar em um único arquivo .fasta até 2000 sequências de DNA de uma só vez e acessar informações de local de origem da sequência.
+Permite  buscar por taxon e marcador. Retorna um arquivo .fasta com as sequências e um arquivo .csv com as informações de local de origem da sequência, quando disponíveis.
+
+
+Usage:
+
+    GBdonwload(species_name, marker_name)
+
+Arguments:
+
+ species_name: Texto. Termo de busca referente ao taxon que se tem interesse nas sequências. Pode ser nome específico, família, gênero, etc.
+
+ marker_name: Texto. Abreviação do marcador molecular que deseja buscar (p.ex: "ND2", "cytb", "COI"). 
+
+Details:
+
+    Para realizar busca somente por taxon, manter marker_name como "". Atentar para o limite de resultados permitido pela função.
+
+
+Value:
+
+Um arquivo .fasta e um .csv criados no diretório de trabalho
+
+
+
+Warning:
+
+Requer pacotes ape e rentrez
+Nem todos os registros do GenBank possuem informações sobre local de coleta da amostra, e nível de detalhe da informação também varia, alguns registros informam apenas o país, outros possuem até coordenadas. 
+Em alguns casos o arquivo .csv terá apenas informação do número de acesso, alguns terão número de tombo do voucher. 
+
+
+Author(s):
+Camila Costa Trevisan                             
+   
+
+
+
+Examples:
+
+#Busca com 0 resultados
+gbdownload("Odontophrynus carvalhoi", "ND2")
+#Busca com ate 500 resultados
+gbdownload("Rhinella crucifer", "cytb")
+#Busca com 500 a 1000 resultados
+gbdownload("Leptodactylidae", "Coi")
+#Busca com 1000 a 1500 resultados
+gbdownload("Bufonidae", "Coi")
+#Busca com 1500 a 2000 resultados
+gbdownload("Hylidae", "Cytb")
+#busca com mais de 2000 resultados
+gbdownload("Hylidae", "Coi")
+#Busca com somente por especie
+gbdownload("Odontophrynus carvalhoi", "")
